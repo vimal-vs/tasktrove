@@ -1,9 +1,7 @@
-import { UserButton } from "@clerk/nextjs";
-
 export default function Home() {
   return (
-    <div>
-      <UserButton afterSignOutUrl="/" />
+    <div className="flex justify-center items-center">
+      <p>Home</p>
     </div>
   );
 }
