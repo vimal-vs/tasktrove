@@ -1,4 +1,3 @@
-import React from 'react'
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from './ui/sheet';
 import { useForm } from 'react-hook-form';
 import { createCollectionSchema, createCollectionSchemaType } from '@/schema/createCollection';
@@ -10,6 +9,10 @@ import { CollectionColor, CollectionColors } from '../lib/constants';
 import { cn } from '../lib/utils';
 import { Separator } from './ui/separator';
 import { Button } from './ui/button';
+import { createCollection } from '../actions/collection';
+import { toast } from './ui/use-toast';
+import { ReloadIcon } from '@radix-ui/react-icons';
+import { useRouter } from 'next/navigation';
 
 interface Props {
     open: boolean;
@@ -17,13 +20,31 @@ interface Props {
 }
 
 export default function CollectionSideBar({ open, handleChange }: Props) {
+    const router = useRouter();
+
     const form = useForm<createCollectionSchemaType>({
         resolver: zodResolver(createCollectionSchema),
         defaultValues: {},
     });
 
-    const onSubmit = (data: createCollectionSchemaType) => {
-        console.log(data);
+    const onSubmit = async (data: createCollectionSchemaType) => {
+        try {
+            console.log(data);
+            await createCollection(data);
+            openChangeWrapper(false);
+            toast({
+                title: "Success",
+                description: "Collection created successfully!"
+            })
+            router.refresh();
+        } catch (error: any) {
+            console.log("Error creating collection", error);
+            toast({
+                title: "Error creating collection",
+                description: "Something went wrong.",
+                variant: "destructive"
+            })
+        }
     };
 
     const openChangeWrapper = (open: boolean) => {
@@ -88,7 +109,9 @@ export default function CollectionSideBar({ open, handleChange }: Props) {
                 </Form>
                 <div className='flex flex-col gap-3 mt-8'>
                     <Separator />
-                    <Button variant={"outline"} className={cn(form.watch("color") && CollectionColors[form.getValues("color") as CollectionColor])} onClick={form.handleSubmit(onSubmit)}>Confirm</Button>
+                    <Button disabled={form.formState.isSubmitting} variant={"outline"} className={cn(form.watch("color") && CollectionColors[form.getValues("color") as CollectionColor])} onClick={form.handleSubmit(onSubmit)}>Confirm {form.formState.isSubmitting && (
+                        <ReloadIcon className='ml-2 h-4 w-4 animate-spin' />
+                    )}</Button>
                 </div>
             </SheetContent>
         </Sheet>
