@@ -47,7 +47,13 @@ function WelcomeFallback() {
 
 async function Collections() {
   const user = await currentUser();
+
+  if (!user) return;
+
   const collection = await prisma?.collection.findMany({
+    include: {
+      tasks: true
+    },
     where: {
       userId: user?.id,
     },

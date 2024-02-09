@@ -57,7 +57,7 @@ export default function CollectionSideBar({ open, handleChange }: Props) {
             <SheetContent>
                 <SheetHeader className='flex justify-center items-center'>
                     <SheetTitle>Add Collection</SheetTitle>
-                    <SheetDescription>Collections are a way to group your tasks</SheetDescription>
+                    <SheetDescription>Collections are a way to group your tasks.</SheetDescription>
                 </SheetHeader>
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className='mt-4 flex flex-col gap-3'>
