@@ -63,6 +63,9 @@ export default function CreateTaskModal({ open, setOpen, collection }: Props) {
         }
     }
 
+    const currentDate = (new Date()).toISOString().split('T')[0];
+    const dateObject: Date = new Date(currentDate);
+
     return (
         <Dialog open={open} onOpenChange={openChangeWrapper}>
             <DialogContent className="sm:max-w-[435px]">
@@ -114,7 +117,7 @@ export default function CreateTaskModal({ open, setOpen, collection }: Props) {
                                                 <PopoverContent>
                                                     <Calendar
                                                         mode="single"
-                                                        fromDate={Date.now()}
+                                                        fromDate={dateObject}
                                                         selected={field.value}
                                                         onSelect={field.onChange}
                                                         initialFocus
