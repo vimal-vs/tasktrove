@@ -1,3 +1,5 @@
+"use client";
+
 import { Collection } from "@prisma/client";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "./ui/dialog";
 import { cn } from "../lib/utils";
@@ -5,7 +7,7 @@ import { CollectionColor, CollectionColors } from "../lib/constants";
 import { useForm } from "react-hook-form";
 import { createTaskSchema, createTaskSchemaType } from "@/schema/createTask";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormField, FormItem, FormLabel } from "./ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
 import { Textarea } from "./ui/textarea";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Calendar } from "./ui/calendar";
@@ -31,7 +33,7 @@ export default function CreateTaskModal({ open, setOpen, collection }: Props) {
         defaultValues: {
             collectionId: collection.id,
         },
-    })
+    });
 
     const openChangeWrapper = (value: boolean) => {
         setOpen(value);
@@ -88,6 +90,7 @@ export default function CreateTaskModal({ open, setOpen, collection }: Props) {
                                                 {...field}
                                             />
                                         </FormControl>
+                                        <FormMessage />
                                     </FormItem>
                                 )}
                             />
@@ -109,9 +112,13 @@ export default function CreateTaskModal({ open, setOpen, collection }: Props) {
                                                     </Button>
                                                 </PopoverTrigger>
                                                 <PopoverContent>
-                                                    <Calendar mode="single" selected={field.value}
+                                                    <Calendar
+                                                        mode="single"
+                                                        fromDate={Date.now()}
+                                                        selected={field.value}
                                                         onSelect={field.onChange}
-                                                        initialFocus />
+                                                        initialFocus
+                                                    />
                                                 </PopoverContent>
                                             </Popover>
                                         </FormControl>

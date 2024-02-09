@@ -8,7 +8,7 @@ export default function NavBar() {
     const { user, isLoaded } = useUser();
 
     return (
-        <nav className="flex justify-between items-center w-full px-8 p-4">
+        <nav className="flex justify-between items-center w-full px-8 p-4 shadow-md">
             <h1 className="text-2xl font-bold bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">TaskTrove</h1>
             <div className="flex gap-4 items-center">
                 <ThemeSwitcher />

@@ -82,7 +82,7 @@ export default function CollectionCard({ collection }: Props) {
                         {isOpen && <CaretUpIcon className="h-6 w-6" />}
                     </Button>
                 </CollapsibleTrigger>
-                <CollapsibleContent className="flex rounded-b-md flex-col dark:bg-neutral-900 shadow-lg">
+                <CollapsibleContent className="flex rounded-b-md flex-col bg-white dark:bg-neutral-900 shadow-lg">
                     {tasks?.length === 0 && (
                         <Button variant="ghost" className="flex items-center justify-center gap-1 p-8 py-12 rounded-none" onClick={() => setCreateTaskModal(true)}>
                             <p>No tasks yet</p>

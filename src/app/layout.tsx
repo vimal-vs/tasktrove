@@ -34,7 +34,7 @@ export default function RootLayout({
             <div className='flex flex-col min-h-screen w-full items-center dark:bg-neutral-950'>
               <NavBar />
               <Separator />
-              <main className='flex flex-grow w-full max-w-[700px] items-center justify-center dark:bg-neutral-950'>
+              <main className='flex flex-grow w-full items-center justify-center bg-neutral-200/90 dark:bg-neutral-950'>
                 {children}
                 <Toaster />
               </main>
