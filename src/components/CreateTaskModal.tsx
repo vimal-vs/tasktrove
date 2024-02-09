@@ -46,10 +46,7 @@ export default function CreateTaskModal({ open, setOpen, collection }: Props) {
             toast({
                 title: "Success",
                 description: "Task created successfully!",
-                status: "success",
                 duration: 2000,
-                isClosable: true,
-                variant: "success",
             })
             openChangeWrapper(false);
             router.refresh();
@@ -58,7 +55,6 @@ export default function CreateTaskModal({ open, setOpen, collection }: Props) {
                 title: "Error",
                 description: "Unable to create task",
                 variant: "destructive",
-                isClosable: true,
             })
         }
     }

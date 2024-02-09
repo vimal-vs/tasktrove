@@ -37,18 +37,14 @@ export default function CollectionCard({ collection }: Props) {
             toast({
                 title: "Deleted",
                 description: "Collection deleted successfully",
-                status: "success",
                 duration: 2000,
-                isClosable: true,
             })
             router.refresh();
         } catch (error) {
             toast({
                 title: "Error",
                 description: "Unable to delete collection",
-                status: "success",
                 variant: "destructive",
-                isClosable: true,
             })
         }
     }
