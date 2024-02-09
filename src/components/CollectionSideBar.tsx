@@ -13,6 +13,7 @@ import { createCollection } from '../actions/collection';
 import { toast } from './ui/use-toast';
 import { ReloadIcon } from '@radix-ui/react-icons';
 import { useRouter } from 'next/navigation';
+import sendEmail from '../actions/sendEmail';
 
 interface Props {
     open: boolean;
@@ -21,7 +22,6 @@ interface Props {
 
 export default function CollectionSideBar({ open, handleChange }: Props) {
     const router = useRouter();
-
     const form = useForm<createCollectionSchemaType>({
         resolver: zodResolver(createCollectionSchema),
         defaultValues: {},
@@ -29,8 +29,8 @@ export default function CollectionSideBar({ open, handleChange }: Props) {
 
     const onSubmit = async (data: createCollectionSchemaType) => {
         try {
-            console.log(data);
             await createCollection(data);
+            await sendEmail(data);
             openChangeWrapper(false);
             toast({
                 title: "Success",
