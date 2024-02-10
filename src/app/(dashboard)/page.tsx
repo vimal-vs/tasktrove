@@ -6,7 +6,7 @@ import { Suspense } from "react";
 import CreateButton from "@/src/components/CreateButton";
 import CollectionCard from "@/src/components/CollectionCard";
 import LandingPage from "../../components/LandingPage";
-import Moment from "moment-timezone";
+import moment from "moment-timezone";
 
 export default async function Home() {
   return (
@@ -23,7 +23,8 @@ export default async function Home() {
 
 function getGreetMessage() {
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  const currentHour = Moment().tz(timezone).hour();
+  const currentHour = moment().tz(timezone).hour();
+  console.log(currentHour);
 
   if (currentHour < 12) {
     return ('Good Morning')
