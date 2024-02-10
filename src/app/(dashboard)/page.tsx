@@ -20,6 +20,18 @@ export default async function Home() {
   );
 }
 
+function getGreetMessage() {
+  var today = new Date()
+  var curHr = today.getHours()
+
+  if (curHr < 12) {
+    return ('Good Morning')
+  } else if (curHr < 18) {
+    return ('Pleasant Afternoon')
+  } else {
+    return ('Lovely Evening')
+  }
+}
 
 async function WelcomeMessage() {
   const user = await currentUser();
@@ -27,10 +39,11 @@ async function WelcomeMessage() {
   if (!user) {
     return <LandingPage />;
   }
+
   return (
-    <div className="flex w-full mb-6">
-      <h1 className="text-4xl font-bold">
-        Welcome Back, {user.firstName}! 👋
+    <div className="flex w-full mb-8">
+      <h1 className="text-3xl md:text-4xl font-bold">
+        {getGreetMessage()}, {user.firstName}! 👋
       </h1>
     </div>
   )
