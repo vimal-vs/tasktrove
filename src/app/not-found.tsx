@@ -11,10 +11,10 @@ export default function NotFound() {
                             <h1 className="text-2xl md:text-6xl text-center text-black">404</h1>
                         </div>
                         <div className="mt-10 w-full">
-                            <h3 className="text-xl md:text-5xl w-full">Looks like you're lost 😕</h3>
+                            <h3 className="text-xl md:text-5xl w-full">Looks like you&apos;re lost 😕</h3>
                             <Link href={"/"}>
                                 <Button variant={"secondary"} className="dark:text-white w-fit dark:bg-neutral-900 bg-white mt-6">
-                                    <span className="bg-gradient-to-r from-red-500 to-orange-500 hover:to-orange-800 bg-clip-text text-transparent text-base font-bold">Go to  Home</span>
+                                    <span className="bg-gradient-to-r from-red-500 to-orange-500 hover:to-orange-800 bg-clip-text text-transparent text-base font-bold">Go to Home</span>
                                 </Button>
                             </Link>
                         </div>
