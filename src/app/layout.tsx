@@ -6,7 +6,7 @@ import { ThemeProvider } from '@/src/providers/ThemeProvider';
 import { cn } from '@/src/lib/utils';
 import NavBar from '../components/NavBar';
 import { Toaster } from '../components/ui/toaster';
-import SessionProvider from '../components/SessionProvider';
+import SessionProvider from '../providers/SessionProvider';
 
 const inter = Inter({ subsets: ['latin'] })
 
