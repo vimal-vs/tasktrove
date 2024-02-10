@@ -25,7 +25,9 @@ export default function RootLayout({
       elements: {
         footer: "hidden",
       },
-    }}>
+    }}
+      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+    >
       <html lang="en" className={cn(inter.className, "dark")} style={{
         colorScheme: "dark"
       }}>
