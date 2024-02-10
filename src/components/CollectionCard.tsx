@@ -74,8 +74,8 @@ export default function CollectionCard({ collection }: Props) {
                         )}
                     >
                         <span className="text-white font-bold">{collection.name}</span>
-                        {!isOpen && <CaretDownIcon className="h-6 w-6" />}
-                        {isOpen && <CaretUpIcon className="h-6 w-6" />}
+                        {!isOpen && <CaretDownIcon className="h-6 w-6 text-white" />}
+                        {isOpen && <CaretUpIcon className="h-6 w-6 text-white" />}
                     </Button>
                 </CollapsibleTrigger>
                 <CollapsibleContent className="flex rounded-b-md flex-col bg-white dark:bg-neutral-900 shadow-lg">
