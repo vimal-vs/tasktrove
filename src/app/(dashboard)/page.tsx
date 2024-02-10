@@ -23,8 +23,9 @@ export default async function Home() {
 
 function getGreetMessage() {
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  const currentHour = moment().tz(timezone).hour();
-  console.log(currentHour);
+  // const currentHour = moment().tz(timezone).hour();
+  const currentHour = 0;
+  console.log(timezone);
 
   if (currentHour < 12) {
     return ('Good Morning')
