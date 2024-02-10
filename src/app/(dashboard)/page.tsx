@@ -1,12 +1,13 @@
 import { Alert, AlertTitle } from "@/src/components/ui/alert";
 import { Skeleton } from "@/src/components/ui/skeleton";
-import { currentUser } from "@clerk/nextjs";
 import prisma from "@/src/lib/prisma";
 import { Suspense } from "react";
 import CreateButton from "@/src/components/CreateButton";
 import CollectionCard from "@/src/components/CollectionCard";
 import LandingPage from "../../components/LandingPage";
 import moment from "moment-timezone";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/src/lib/auth";
 
 export default async function Home() {
   return (
@@ -37,7 +38,7 @@ function getGreetMessage() {
 }
 
 async function WelcomeMessage() {
-  const user = await currentUser();
+  const user = await getServerSession(authOptions);
 
   if (!user) {
     return <LandingPage />;
@@ -46,7 +47,7 @@ async function WelcomeMessage() {
   return (
     <div className="flex w-full mb-8">
       <h1 className="text-3xl md:text-4xl font-bold">
-        {getGreetMessage()}, {user.firstName}! 👋
+        {getGreetMessage()}, {user.user?.name}! 👋
       </h1>
     </div>
   )
@@ -63,7 +64,7 @@ function WelcomeFallback() {
 }
 
 async function Collections() {
-  const user = await currentUser();
+  const user = await getServerSession(authOptions);
 
   if (!user) return;
 
@@ -72,7 +73,7 @@ async function Collections() {
       tasks: true
     },
     where: {
-      userId: user?.id,
+      userId: user?.user?.email as string,
     },
   })
   if (collection?.length === 0) {

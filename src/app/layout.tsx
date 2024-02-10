@@ -1,12 +1,12 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { ClerkProvider } from '@clerk/nextjs';
 import { Separator } from '../components/ui/separator';
 import { ThemeProvider } from '@/src/providers/ThemeProvider';
 import { cn } from '@/src/lib/utils';
 import NavBar from '../components/NavBar';
 import { Toaster } from '../components/ui/toaster';
+import SessionProvider from '../components/SessionProvider';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,17 +21,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider appearance={{
-      elements: {
-        footer: "hidden",
-      },
-    }}
-      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
-    >
-      <html lang="en" className={cn(inter.className, "dark")} style={{
-        colorScheme: "dark"
-      }}>
-        <body>
+    <html lang="en" className={cn(inter.className, "dark")} style={{
+      colorScheme: "dark"
+    }}>
+      <body>
+        <SessionProvider>
           <ThemeProvider>
             <div className='flex flex-col min-h-screen w-full items-center dark:bg-neutral-950'>
               <NavBar />
@@ -42,8 +36,8 @@ export default function RootLayout({
               </main>
             </div>
           </ThemeProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+        </SessionProvider>
+      </body>
+    </html>
   )
 }

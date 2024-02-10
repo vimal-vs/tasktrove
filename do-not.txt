@@ -1,1 +1,2 @@
 one hell of an issue - https://github.com/adrianhajdin/threads/issues/27
+next auth adapter type - https://stackoverflow.com/questions/76503606/next-auth-error-adapter-is-not-assignable-to-type-adapter-undefined
