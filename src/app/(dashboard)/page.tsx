@@ -5,6 +5,7 @@ import prisma from "@/src/lib/prisma";
 import { Suspense } from "react";
 import CreateButton from "@/src/components/CreateButton";
 import CollectionCard from "@/src/components/CollectionCard";
+import LandingPage from "../../components/LandingPage";
 
 export default async function Home() {
   return (
@@ -12,7 +13,7 @@ export default async function Home() {
       <Suspense fallback={<WelcomeFallback />}>
         <WelcomeMessage />
       </Suspense>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<CollectionsFallback />}>
         <Collections />
       </Suspense>
     </>
@@ -24,12 +25,12 @@ async function WelcomeMessage() {
   const user = await currentUser();
 
   if (!user) {
-    return <div>nope</div>;
+    return <LandingPage />;
   }
   return (
     <div className="flex w-full mb-6">
       <h1 className="text-4xl font-bold">
-        Welcome, {user.firstName}! 👋
+        Welcome Back, {user.firstName}! 👋
       </h1>
     </div>
   )
@@ -39,7 +40,7 @@ function WelcomeFallback() {
   return (
     <div className="flex w-full">
       <h1 className="text-4xl font-bold">
-        <Skeleton className="w-[200px] bg-slate-600" />
+        <Skeleton className="w-[350px] h-12 bg-slate-400/10" />
       </h1>
     </div>
   )
@@ -75,6 +76,15 @@ async function Collections() {
         <CollectionCard key={item.id} collection={item} />
       ))}
       <CreateButton />
+    </div>
+  )
+}
+
+function CollectionsFallback() {
+  return (
+    <div className="flex flex-col gap-4 mt-4">
+      <Skeleton className="w-full h-12 bg-slate-400/10" />
+      <Skeleton className="w-full h-10 bg-slate-400/10" />
     </div>
   )
 }
