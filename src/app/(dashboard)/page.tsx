@@ -24,9 +24,7 @@ export default async function Home() {
 
 function getGreetMessage() {
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  // const currentHour = moment().tz(timezone).hour();
-  const currentHour = 0;
-  console.log(timezone);
+  const currentHour = moment().tz(timezone).hour();
 
   if (currentHour < 12) {
     return ('Good Morning')
@@ -43,7 +41,6 @@ async function WelcomeMessage() {
   if (!user) {
     return <LandingPage />;
   }
-
   return (
     <div className="flex w-full mb-8">
       <h1 className="text-3xl md:text-4xl font-bold">
