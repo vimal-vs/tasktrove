@@ -13,7 +13,6 @@ import { createCollection } from '../actions/collection';
 import { toast } from './ui/use-toast';
 import { ReloadIcon } from '@radix-ui/react-icons';
 import { useRouter } from 'next/navigation';
-import sendEmail from '../actions/sendEmail';
 
 interface Props {
     open: boolean;
@@ -30,7 +29,6 @@ export default function CollectionSideBar({ open, handleChange }: Props) {
     const onSubmit = async (data: createCollectionSchemaType) => {
         try {
             await createCollection(data);
-            await sendEmail(data);
             openChangeWrapper(false);
             toast({
                 title: "Success",

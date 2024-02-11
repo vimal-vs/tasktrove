@@ -6,14 +6,27 @@ import { Button } from "./ui/button";
 import { Righteous } from "next/font/google";
 import { cn } from "../lib/utils";
 import { signIn, signOut, useSession } from "next-auth/react";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../lib/auth";
+import sendEmail from "../actions/sendEmail";
+import { useEffect } from "react";
 
 const font = Righteous({ subsets: ["latin"], weight: ["400"] });
 
 export default function NavBar() {
 
     const { data: session, status } = useSession();
+
+    useEffect(() => {
+        async function handleAuthStatus() {
+            if (status === "authenticated") {
+                try {
+                    await sendEmail(session, status);
+                } catch (error) {
+                    console.error("Error sending email:", error);
+                }
+            }
+        }
+        handleAuthStatus();
+    }, [session]);
 
     return (
         <nav className="flex justify-between items-center w-full px-6 p-4 shadow-md">
