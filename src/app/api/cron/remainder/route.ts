@@ -1,9 +1,11 @@
 import schedule from 'node-schedule';
-import prisma from "../../../lib/prisma";
+import prisma from "../../../../lib/prisma";
 import { Resend } from "resend";
-import RemainderEmailCard from '../../../emails/RemainderEmailCard';
+import RemainderEmailCard from '../../../../emails/RemainderEmailCard';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+export const revalidate = 0;
 
 export async function GET() {
     const rule = new schedule.RecurrenceRule();
