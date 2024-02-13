@@ -2,7 +2,7 @@
     "crons": [
         {
             "path": "/api/remainder",
-            "schedule": "10 5 * * *"
+            "schedule": "10 17 * * *"
         }
     ]
 }
