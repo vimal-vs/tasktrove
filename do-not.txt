@@ -1,3 +1,4 @@
 one hell of an issue - https://github.com/adrianhajdin/threads/issues/27
 next auth adapter type - https://stackoverflow.com/questions/76503606/next-auth-error-adapter-is-not-assignable-to-type-adapter-undefined
 session provider - https://github.com/nextauthjs/next-auth/issues/3061
+add serverComponentsExternalPackages - https://stackoverflow.com/questions/77195390/youre-importing-a-component-that-imports-react-dom-server
