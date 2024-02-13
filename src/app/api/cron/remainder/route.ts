@@ -2,13 +2,21 @@ import schedule from 'node-schedule';
 import prisma from "../../../../lib/prisma";
 import { Resend } from "resend";
 import RemainderEmailCard from '../../../../emails/RemainderEmailCard';
+import { NextRequest } from 'next/server';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const revalidate = 0;
-export const dynamic = 'force-dynamic';
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+
+    const authHeader = request.headers.get('authorization');
+    if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+        return new Response('Unauthorized', {
+            status: 401,
+        });
+    }
+
     const rule = new schedule.RecurrenceRule();
     rule.hour = 9;
     rule.minute = 0;
