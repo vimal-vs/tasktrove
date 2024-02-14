@@ -6,8 +6,6 @@ import { NextRequest } from 'next/server';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export const revalidate = 0;
-
 export async function GET(request: NextRequest) {
 
     const authHeader = request.headers.get('authorization');
@@ -46,22 +44,25 @@ export async function GET(request: NextRequest) {
             expirationDate.getDate() === today.getDate();
     });
 
-    console.log("Cron started :", today + "for" + filteredTasks.length);
-    filteredTasks.forEach(async (item: any) => {
-        try {
-            await resend.emails.send({
-                from: 'TaskTrove <noreply@vimalvs.site>',
-                to: item.userId,
-                subject: 'Remainder for your task',
-                text: item.content,
-                react: RemainderEmailCard(item)
-            });
-            console.log('Email sent successfully for:', item.userId);
-        } catch (error) {
-            console.error('Error sending remainder email', error);
-        }
+    const sendRemainders = async () => {
+        filteredTasks.forEach(async (item: any) => {
+            try {
+                await resend.emails.send({
+                    from: 'TaskTrove <noreply@vimalvs.site>',
+                    to: item.userId,
+                    subject: 'Remainder for your task',
+                    text: item.content,
+                    react: RemainderEmailCard(item)
+                });
+                console.log('Email sent successfully for:', item.userId);
+            } catch (error) {
+                console.error('Error sending remainder email', error);
+            }
+        });
 
-    });
+        return Response.json({ success: true });
+    };
 
-    return Response.json({ success: true });
+    console.log("Cron started :", today + " for " + filteredTasks.length);
+    sendRemainders();
 }
