@@ -59,10 +59,12 @@ export async function GET(request: NextRequest) {
                 console.error('Error sending remainder email', error);
             }
         });
-
-        return Response.json({ success: true });
+        return Response.json({ success: true, data: filteredTasks });
     };
 
-    console.log("Cron started :", today + " for " + filteredTasks.length);
-    sendRemainders();
+    console.log("Cron started :", today + " for " + filteredTasks.length + " tasks");
+    if (filteredTasks.length) {
+        await sendRemainders();
+    }
+
 }
