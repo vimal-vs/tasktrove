@@ -66,5 +66,5 @@ export async function GET(request: NextRequest) {
     if (filteredTasks.length) {
         await sendRemainders();
     }
-
+    return Response.json({ success: false, data: filteredTasks });
 }
