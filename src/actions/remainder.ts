@@ -34,7 +34,8 @@ export default async function remainder() {
 
         const filteredTasks = allTasks.filter((item: any) => {
             const expirationDate = new Date(item.expiresAt);
-            return expirationDate.getFullYear() === today.getFullYear() &&
+            return item.done === false &&
+                expirationDate.getFullYear() === today.getFullYear() &&
                 expirationDate.getMonth() === today.getMonth() &&
                 expirationDate.getDate() === today.getDate();
         });
