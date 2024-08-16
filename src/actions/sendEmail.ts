@@ -21,7 +21,7 @@ export default async function sendEmail(session: any, status: any) {
 
     try {
         await resend.emails.send({
-            from: 'TaskTrove <noreply@vimalvs.site>',
+            from: 'TaskTrove <noreply@vimalvs.com>',
             to: email,
             subject: 'Welcome to TaskTrove',
             text: 'Thank you for signing up',
