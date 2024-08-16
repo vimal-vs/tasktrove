@@ -8,7 +8,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export default async function sendVerificationEmail(url: any, host: any, email: any) {
     try {
         await resend.emails.send({
-            from: 'TaskTrove <noreply@vimalvs.site>',
+            from: 'TaskTrove <noreply@vimalvs.com>',
             to: email,
             subject: 'TaskTrove - Login',
             text: 'Login to TaskTrove',
