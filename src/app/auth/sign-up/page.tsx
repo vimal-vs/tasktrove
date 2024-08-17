@@ -1,4 +1,4 @@
-export default function page() {
+export default function Page() {
     return (
         <div className="py-16">
             <div className="flex rounded-lg shadow-lg overflow-hidden mx-auto max-w-sm lg:max-w-full">

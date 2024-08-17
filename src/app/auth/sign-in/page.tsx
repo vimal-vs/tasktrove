@@ -11,7 +11,7 @@ import Link from "next/link";
 
 const font = Righteous({ subsets: ["latin"], weight: ["400"] });
 
-export default function page() {
+export default function Page() {
     const { status } = useSession();
     if (status === "authenticated") {
         redirect('/');
